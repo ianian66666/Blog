@@ -1,0 +1,25 @@
+mybatis:
+#  config-location: classpath:mybatis/MyBatis-Config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.ian.blog.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+#分頁插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+comment.avatar: /images/burger.jpg
+
+spring:
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+  messages:
+    basename: i18n/messages
+

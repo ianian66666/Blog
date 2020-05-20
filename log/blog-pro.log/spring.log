@@ -1,0 +1,11 @@
+2020-04-16 21:27:44.757  INFO 888 --- [restartedMain] com.ian.blog.BlogApplication             : Starting BlogApplication on MSI with PID 888 (D:\idea\blog\target\classes started by user in D:\idea\blog)
+2020-04-16 21:27:44.761  INFO 888 --- [restartedMain] com.ian.blog.BlogApplication             : The following profiles are active: pro
+2020-04-16 21:27:45.542  WARN 888 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.ian.blog]' package. Please check your configuration.
+2020-04-16 21:27:47.027  WARN 888 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 21:27:47.281  WARN 888 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-04-16 21:27:47.464  INFO 888 --- [restartedMain] com.ian.blog.BlogApplication             : Started BlogApplication in 3.323 seconds (JVM running for 4.669)
+2020-04-16 21:40:31.017  INFO 9396 --- [restartedMain] com.ian.blog.BlogApplication             : Starting BlogApplication on MSI with PID 9396 (D:\idea\blog\target\classes started by user in D:\idea\blog)
+2020-04-16 21:40:31.020  INFO 9396 --- [restartedMain] com.ian.blog.BlogApplication             : The following profiles are active: pro
+2020-04-16 21:40:32.534  WARN 9396 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.ian.blog]' package. Please check your configuration.
+2020-04-16 21:40:34.296  WARN 9396 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 21:40:34.795  INFO 9396 --- [restartedMain] com.ian.blog.BlogApplication             : Started BlogApplication in 4.407 seconds (JVM running for 5.843)

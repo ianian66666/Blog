@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ian.blog.mapper.BlogMapper">
+
+    <!-- 博客簡單信息-->
+    <resultMap id="simpleBlog" type="blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="typeId" column="type_id"/>
+        <association property="type" javaType="type">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+    <!--獲取根據搜尋條件簡單博客列表-->
+    <select id="simpleQueryBySearch" resultMap="simpleBlog" parameterType="blogSearch">
+       <if test="title != null">
+           <bind name="pattern" value="'%'+title+'%'"/>
+       </if>
+        select a.id, a.title ,a.update_time,a.published,a.recommend,a.type_id,b.id,b.name from t_blog a
+        left join
+        t_type b on a.type_id = b.id
+        <where>
+            <if test="typeId != null and typeId != -1">
+                and a.type_id=#{typeId}
+            </if>
+            <if test="recommend != null">
+                and a.recommend =#{recommend}
+            </if>
+            <if test="title != null">
+                and a.title like #{pattern}
+            </if>
+        </where>
+        order by a.create_time asc
+    </select>
+
+
+    <!--根據id查blog-->
+    <select id="getBlogById" resultType="blog" parameterType="long">
+        select * from t_blog where id = #{id}
+    </select>
+
+    <resultMap id="middleBlog" type="blog">
+    <id property="id" column="id"/>
+    <result property="title" column="title"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="published" column="published"/>
+    <result property="recommend" column="recommend"/>
+    <result property="commentabled" column="commentabled"/>
+    <result property="shareStatement" column="share_statement"/>
+    <result property="typeId" column="type_id"/>
+    <result property="views" column="views"/>
+    <result property="firstPicture" column="first_picture"/>
+    <result property="description" column="description"/>
+    <result property="userId" column="user_id"/>
+    <association property="type" javaType="type">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </association>
+    <association property="user" javaType="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="nickName" column="nick_name"></result>
+        <result property="password" column="password"></result>
+        <result property="avatar" column="avatar"></result>
+        <result property="update_time" column="updateTime"></result>
+    </association>
+</resultMap>
+
+
+
+
+    <!--分頁查詢-->
+    <select id="pageBlog" resultMap="middleBlog">
+        select a.* ,b.id,b.name,c.*  from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true
+    </select>
+
+    <!--新增-->
+    <insert id="saveBlog" parameterType="blog">
+      insert into t_blog(title,content,first_picture,views,flag,share_statement,commentabled,published,recommend,update_time,create_time,tagIds,type_id,user_id,description)
+       values(#{title},#{content},#{firstPicture},#{views},#{flag},#{shareStatement},#{commentabled},#{published},#{recommend},#{updateTime},#{createTime},#{tagIds},#{type.id},#{user.id},#{description})
+        </insert>
+    <!--修改-->
+    <update id="updateBlog" parameterType="blog">
+        update t_blog set title=#{title},content=#{content},first_picture=#{firstPicture},flag=#{flag},description=#{description}
+        ,share_statement=#{shareStatement},commentabled=#{commentabled},published=#{published},recommend=#{recommend},
+        update_time=#{updateTime},tagIds=#{tagIds},type_id=#{type.id} where id=#{id}
+    </update>
+
+    <!--瀏覽次數-->
+    <update id="updateViews" parameterType="blog">
+        update t_blog set views =#{views} where id =#{id}
+    </update>
+
+    <!--刪除-->
+    <delete id="deleteBlog" parameterType="long">
+            delete  from t_blog where id=#{id}
+    </delete>
+
+    <!--最新推薦-->
+    <select id="listRecommendBlog" parameterType="int" resultType="blog">
+        select title,id from t_blog where recommend =true order by create_time desc
+        <if test="num != -1">
+            limit #{num}
+        </if>
+    </select>
+
+    <!--Search查詢-->
+    <select id="queryBlog" resultMap="middleBlog" parameterType="string">
+            select a.*, b.* ,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id
+                <if test="strings != null">
+                <bind name="str" value="'%'+strings+'%'"/>
+                </if>
+            <where>
+            <if test="str != null">
+                title like #{str} or content like #{str}
+            </if>
+            </where>
+
+    </select>
+
+
+
+    <resultMap id="hardBlog" type="blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="published" column="published"/>
+        <result property="recommend" column="recommend"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="content" column="content"/>
+        <result property="flag" column="flag"/>
+        <result property="createTime" column="create_time"></result>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="typeId" column="type_id"/>
+        <result property="views" column="views"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="description" column="description"/>
+        <result property="tagIds" column="tagIds"/>
+        <result property="userId" column="user_id"/>
+        <association property="type" javaType="type">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+        </association>
+        <association property="user" javaType="user">
+            <id property="id" column="id"></id>
+            <result property="username" column="username"></result>
+            <result property="nickName" column="nick_name"></result>
+            <result property="password" column="password"></result>
+            <result property="avatar" column="avatar"></result>
+            <result property="update_time" column="updateTime"></result>
+        </association>
+        <collection property="tags" ofType="tag">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+        </collection>
+    </resultMap>
+
+    <!--以id獲取博客詳情-->
+    <select id="getAllById" resultMap="hardBlog" parameterType="long">
+        select a.* ,b.* ,c.* from t_blog a join t_type  b on a.type_id = b.id join t_user c on a.user_id = c.id join t_tag d on a.tagIds = d.id
+        where published = true and a.id =#{id}
+    </select>
+
+    <!--根據typeid來搜尋-->
+    <select id="blogByTypeId" resultMap="hardBlog" parameterType="long">
+         select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id  where type_id =#{id} and published = true order by a.create_time desc
+    </select>
+
+    <!--搜尋整個的blog在搜尋tagids-->
+    <select id="allBlog" resultMap="hardBlog" >
+        select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc
+
+    </select>
+
+    <!--日期格式化-->
+    <select id="dateFormate" resultType="String">
+     select date_format(create_time,'%Y') as year from t_blog  group  by year order by year desc
+    </select>
+
+    <select id="getblogByYear" parameterType="String" resultType="blog">
+            select*from t_blog  where date_format(create_time,'%Y') =#{year}
+    </select>
+
+    <!--總共條數-->
+    <select id="countBlog" resultType="int">
+        select count(*) from t_blog where published = true
+    </select>
+</mapper>
+
+
+
+
+

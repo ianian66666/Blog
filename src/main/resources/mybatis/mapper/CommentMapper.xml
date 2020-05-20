@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ian.blog.mapper.CommentMapper">
+
+    <resultMap id="commentMap" type="comment">
+        <id property="id" column="id"></id>
+        <result property="content" column="content"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="email" column="email"></result>
+        <result property="nickName" column="nick_name"></result>
+        <result property="blog.id" column="blog_id"></result>
+        <result property="avatar" column="avatar"></result>
+        <result property="adminComment" column="admin_comment"></result>
+        <association property="parentComment.id" column="pid" javaType="comment"></association>
+    </resultMap>
+
+
+<!--獲取留言區列表-->
+    <select id="listCommentByBlogId" parameterType="long" resultMap="commentMap">
+    select * from t_comment where blog_id =#{blog.id} order by create_time asc
+    </select>
+
+    <!--獲取留言區列表且pid=null-->
+    <select id="listCommentByBlogIdWithPidNull" parameterType="long" resultMap="commentMap">
+    select * from t_comment where blog_id =#{blog.id} and pid is null  order by create_time asc
+    </select>
+
+
+
+
+    <!--保存留言數據-->
+    <insert id="saveComment" parameterType="comment">
+        insert into t_comment(content,create_time,email,nick_name,blog_id,pid,admin_comment,avatar)
+        values(#{content},#{createTime},#{email},#{nickName},#{blog.id},#{parentComment.id},#{adminComment},#{avatar})
+    </insert>
+
+    <!--依照pid找尋主樓-->
+    <select id="findByParentCommentId" parameterType="long" resultMap="commentMap">
+        select *from t_comment where id =#{parentComment.id}
+
+    </select>
+
+
+    <select id="listCommentByBlogIdWithPidNotNull" resultMap="commentMap" parameterType="long">
+        select* from t_comment where pid is not null and pid=#{pid}
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ian.blog.mapper.UserMapper">
+
+    <select id="findByUsernameAndPassword" resultType="user" parameterType="user">
+            select * from t_user where username=#{username} and password = #{password}
+    </select>
+    <resultMap id="usertype" type="user">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="nick_name" property="nickName"></result>
+        <result column="password" property="password"></result>
+        <result column="avatar" property="avatar"></result>
+        <result column="email" property="email"></result>
+    </resultMap>
+
+
+
+    <select id="getUser" resultMap="usertype" parameterType="String">
+            select * from t_user where username =#{username}
+    </select>
+</mapper>

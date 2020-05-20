@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ian.blog.mapper.TagMapper">
+    <!--  用id查詢-->
+    <select id="getTagByid" resultType="Tag" parameterType="long">
+        select * from t_tag where id=#{id}
+</select>
+
+    <!--新增標籤-->
+    <insert id="saveTag" parameterType="tag">
+        insert into t_tag(name) values(#{name})
+    </insert>
+
+    <!--分頁查詢-->
+    <select id="pageTag" resultType="tag">
+        select*from t_tag
+    </select>
+
+
+    <update id="updateTag" parameterType="tag">
+        update t_tag set name=#{name} where id =#{id}
+    </update>
+
+    <delete id="deleteTag" parameterType="long">
+    delete from t_tag where id=#{id}
+    </delete>
+
+    <!--檢查是否有相通標籤-->
+    <select id="getByName" resultType="int" parameterType="tag">
+            select count(*) from t_tag where name =#{name}
+    </select>
+
+    <!--查出所有id的tag-->
+    <select id="getAllTagByid" parameterType="list" resultType="tag">
+        select*from t_tag
+        <where>
+        <foreach item="ids" collection="list" index="index" separator="," open="id in (" close=")" >
+            #{ids}
+        </foreach>
+        </where>
+    </select>
+
+
+
+</mapper>

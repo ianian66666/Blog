@@ -1,0 +1,626 @@
+2020-05-17 13:02:21.762  INFO 8444 --- [restartedMain] com.ian.blog.BlogApplication             : Starting BlogApplication on MSI with PID 8444 (D:\idea\blog\target\classes started by user in D:\idea\blog)
+2020-05-17 13:02:21.768 DEBUG 8444 --- [restartedMain] com.ian.blog.BlogApplication             : Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-05-17 13:02:21.769  INFO 8444 --- [restartedMain] com.ian.blog.BlogApplication             : The following profiles are active: dev
+2020-05-17 13:02:21.835  INFO 8444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-17 13:02:21.835  INFO 8444 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-17 13:02:24.088  INFO 8444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2020-05-17 13:02:24.100  INFO 8444 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-17 13:02:24.102  INFO 8444 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-17 13:02:24.229  INFO 8444 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-17 13:02:24.229  INFO 8444 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2393 ms
+2020-05-17 13:02:25.306  INFO 8444 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-17 13:02:25.474  INFO 8444 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-17 13:02:25.528  WARN 8444 --- [restartedMain] o.s.w.s.r.ResourceHttpRequestHandler     : Locations list is empty. No resources will be served unless a custom ResourceResolver is configured as an alternative to PathResourceResolver.
+2020-05-17 13:02:26.343  INFO 8444 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-05-17 13:02:26.410  INFO 8444 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2020-05-17 13:02:26.414  INFO 8444 --- [restartedMain] com.ian.blog.BlogApplication             : Started BlogApplication in 5.485 seconds (JVM running for 8.601)
+2020-05-17 13:02:33.480  INFO 8444 --- [http-nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-17 13:02:33.481  INFO 8444 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-17 13:02:33.496  INFO 8444 --- [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2020-05-17 13:02:33.540  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.index', args=[3, 14, {}, org.apache.catalina.connector.RequestFacade@5ddc6e58]}
+2020-05-17 13:02:33.607  INFO 8444 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-17 13:02:33.794  INFO 8444 --- [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-17 13:02:33.804 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:33.832 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==> Parameters: 
+2020-05-17 13:02:33.868 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : <==      Total: 1
+2020-05-17 13:02:33.874 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.BlogMapper.pageBlog  : ==>  Preparing: select a.* ,b.id,b.name,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true LIMIT ? 
+2020-05-17 13:02:33.875 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.BlogMapper.pageBlog  : ==> Parameters: 14(Integer)
+2020-05-17 13:02:33.885 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.BlogMapper.pageBlog  : <==      Total: 6
+2020-05-17 13:02:33.891 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:33.892 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:33.903 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:33.931 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:33.932 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 5(Integer)
+2020-05-17 13:02:33.935 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 5
+2020-05-17 13:02:33.937 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:33.937 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:33.970 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:33.971 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:33.971 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 6(Integer)
+2020-05-17 13:02:33.972 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 5
+2020-05-17 13:02:33.973  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : index
+2020-05-17 13:02:35.105  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:35.106 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:35.107 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:35.108 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:35.109  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:44.285  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.index', args=[3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:44.288 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:44.288 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==> Parameters: 
+2020-05-17 13:02:44.290 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : <==      Total: 1
+2020-05-17 13:02:44.291 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.pageBlog  : ==>  Preparing: select a.* ,b.id,b.name,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true LIMIT ? 
+2020-05-17 13:02:44.291 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.pageBlog  : ==> Parameters: 14(Integer)
+2020-05-17 13:02:44.298 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.pageBlog  : <==      Total: 6
+2020-05-17 13:02:44.299 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:44.299 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:44.301 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:44.302 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:44.302 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 5(Integer)
+2020-05-17 13:02:44.304 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 5
+2020-05-17 13:02:44.304 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:44.305 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:44.306 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:44.307 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:44.307 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 6(Integer)
+2020-05-17 13:02:44.309 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 5
+2020-05-17 13:02:44.309  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : index
+2020-05-17 13:02:44.654  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:44.654 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:44.655 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:44.657 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:44.657  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:45.576  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/types/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeShowController.types', args=[-1, 3, 14, {}]}
+2020-05-17 13:02:45.579 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:45.580 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:45.581 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:45.582 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:45.583 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 10000(Integer)
+2020-05-17 13:02:45.586 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 7
+2020-05-17 13:02:45.597 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE type_id = ? AND published = true 
+2020-05-17 13:02:45.597 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==> Parameters: 5(Long)
+2020-05-17 13:02:45.599 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : <==      Total: 1
+2020-05-17 13:02:45.600 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==>  Preparing: select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id where type_id =? and published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:45.600 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==> Parameters: 5(Long), 14(Integer)
+2020-05-17 13:02:45.605 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : <==      Total: 2
+2020-05-17 13:02:45.605  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : types
+2020-05-17 13:02:46.119  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:46.120 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:46.121 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:46.125 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:46.127  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:48.140  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/types/1', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeShowController.types', args=[1, 3, 14, {}]}
+2020-05-17 13:02:48.141 DEBUG 8444 --- [http-nio-8081-exec-9] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:48.141 DEBUG 8444 --- [http-nio-8081-exec-9] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:48.142 DEBUG 8444 --- [http-nio-8081-exec-9] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:48.143 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:48.143 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 10000(Integer)
+2020-05-17 13:02:48.144 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 7
+2020-05-17 13:02:48.147 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE type_id = ? AND published = true 
+2020-05-17 13:02:48.147 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==> Parameters: 1(Long)
+2020-05-17 13:02:48.148 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : <==      Total: 1
+2020-05-17 13:02:48.148 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==>  Preparing: select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id where type_id =? and published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:48.149 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==> Parameters: 1(Long), 14(Integer)
+2020-05-17 13:02:48.150 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.BlogMapper.blogByTypeId  : <==      Total: 1
+2020-05-17 13:02:48.151  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Result : types
+2020-05-17 13:02:48.479  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:48.480 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:48.481 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:48.482 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:48.482  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:49.450  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/types/2', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeShowController.types', args=[2, 3, 14, {}]}
+2020-05-17 13:02:49.451 DEBUG 8444 --- [http-nio-8081-exec-3] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:49.451 DEBUG 8444 --- [http-nio-8081-exec-3] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:49.452 DEBUG 8444 --- [http-nio-8081-exec-3] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:49.453 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:49.453 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 10000(Integer)
+2020-05-17 13:02:49.455 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 7
+2020-05-17 13:02:49.458 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE type_id = ? AND published = true 
+2020-05-17 13:02:49.458 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==> Parameters: 2(Long)
+2020-05-17 13:02:49.459 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : <==      Total: 1
+2020-05-17 13:02:49.459 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==>  Preparing: select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id where type_id =? and published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:49.460 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==> Parameters: 2(Long), 14(Integer)
+2020-05-17 13:02:49.466 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.BlogMapper.blogByTypeId  : <==      Total: 1
+2020-05-17 13:02:49.466  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : types
+2020-05-17 13:02:49.782  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:49.782 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:49.783 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:49.784 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:49.785  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:50.345  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/types/4', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeShowController.types', args=[4, 3, 14, {}]}
+2020-05-17 13:02:50.346 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:02:50.346 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:02:50.347 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:02:50.348 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:02:50.348 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 10000(Integer)
+2020-05-17 13:02:50.349 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 7
+2020-05-17 13:02:50.351 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE type_id = ? AND published = true 
+2020-05-17 13:02:50.351 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==> Parameters: 4(Long)
+2020-05-17 13:02:50.352 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : <==      Total: 1
+2020-05-17 13:02:50.352 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==>  Preparing: select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id where type_id =? and published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:50.353 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==> Parameters: 4(Long), 14(Integer)
+2020-05-17 13:02:50.355 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.BlogMapper.blogByTypeId  : <==      Total: 1
+2020-05-17 13:02:50.355  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : types
+2020-05-17 13:02:50.663  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:50.664 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:50.664 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:50.665 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:50.666  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:51.604  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[-1, 3, 14, {}, org.apache.catalina.connector.RequestFacade@368ee3d0]}
+2020-05-17 13:02:51.607 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:51.608 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:51.609 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:51.611 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:51.611 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:51.613 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:51.613 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:51.613 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:51.625 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:51.629 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? ) 
+2020-05-17 13:02:51.630 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 1(Long)
+2020-05-17 13:02:51.631 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 1
+2020-05-17 13:02:51.632  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:51.992  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:51.992 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:51.992 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:51.994 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:51.994  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:53.393  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/41', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[41, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:53.394 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:53.394 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:53.395 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:53.399 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:53.399 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:53.400 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:53.401 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:53.401 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:53.406 DEBUG 8444 --- [http-nio-8081-exec-5] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:53.407 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? ) 
+2020-05-17 13:02:53.408 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 41(Long), 46(Long)
+2020-05-17 13:02:53.417 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 2
+2020-05-17 13:02:53.418 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? , ? ) 
+2020-05-17 13:02:53.418 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 42(Long), 45(Long), 41(Long)
+2020-05-17 13:02:53.430 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 3
+2020-05-17 13:02:53.430  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:53.726  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:53.727 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:53.727 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:53.728 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:53.729  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:54.418  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/47', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[47, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:54.420 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:54.420 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:54.421 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:54.424 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:54.424 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:54.425 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:54.425 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:54.426 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:54.429 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:54.430 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? ) 
+2020-05-17 13:02:54.430 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 47(Long)
+2020-05-17 13:02:54.431 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 1
+2020-05-17 13:02:54.431  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:54.725  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:54.725 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:54.725 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:54.726 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:54.727  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:55.444  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/45', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[45, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:55.445 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:55.445 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:55.446 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:55.448 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:55.448 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:55.449 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:55.450 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:55.450 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:55.453 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:55.454 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? ) 
+2020-05-17 13:02:55.455 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 46(Long), 45(Long)
+2020-05-17 13:02:55.456 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 2
+2020-05-17 13:02:55.456 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? , ? ) 
+2020-05-17 13:02:55.457 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 42(Long), 45(Long), 41(Long)
+2020-05-17 13:02:55.457 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 3
+2020-05-17 13:02:55.458  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:55.786  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:55.787 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:55.787 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:55.788 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:55.789  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:56.297  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/45', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[45, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:56.298 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:56.298 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:56.299 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:56.300 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:56.300 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:56.301 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:56.302 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:56.302 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:56.305 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:56.307 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? ) 
+2020-05-17 13:02:56.307 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 46(Long), 45(Long)
+2020-05-17 13:02:56.308 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 2
+2020-05-17 13:02:56.309 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? , ? ) 
+2020-05-17 13:02:56.309 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 42(Long), 45(Long), 41(Long)
+2020-05-17 13:02:56.310 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 3
+2020-05-17 13:02:56.310  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:56.597  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:56.598 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:56.598 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:56.599 DEBUG 8444 --- [http-nio-8081-exec-4] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:56.599  INFO 8444 --- [http-nio-8081-exec-4] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:57.264  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/47', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[47, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:02:57.265 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:02:57.265 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:02:57.266 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:02:57.268 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:02:57.268 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:02:57.270 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:02:57.270 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:02:57.270 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:02:57.274 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:02:57.275 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? ) 
+2020-05-17 13:02:57.275 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 47(Long)
+2020-05-17 13:02:57.276 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 1
+2020-05-17 13:02:57.277  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:02:57.565  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:57.566 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:57.566 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:57.567 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:57.567  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:58.545  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/archives', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.ArchivesShowController.archives', args=[{}]}
+2020-05-17 13:02:58.549 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : ==>  Preparing: select date_format(create_time,'%Y') as year from t_blog group by year order by year desc 
+2020-05-17 13:02:58.549 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : ==> Parameters: 
+2020-05-17 13:02:58.560 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : <==      Total: 5
+2020-05-17 13:02:58.561 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:02:58.561 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2020(String)
+2020-05-17 13:02:58.563 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 2
+2020-05-17 13:02:58.563 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:02:58.563 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2019(String)
+2020-05-17 13:02:58.564 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:02:58.565 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:02:58.565 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2018(String)
+2020-05-17 13:02:58.566 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:02:58.566 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:02:58.567 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2017(String)
+2020-05-17 13:02:58.568 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:02:58.568 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:02:58.568 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2016(String)
+2020-05-17 13:02:58.569 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:02:58.570 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : ==>  Preparing: select count(*) from t_blog where published = true 
+2020-05-17 13:02:58.570 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : ==> Parameters: 
+2020-05-17 13:02:58.571 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : <==      Total: 1
+2020-05-17 13:02:58.571  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : archives
+2020-05-17 13:02:58.940  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:02:58.940 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:02:58.940 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:02:58.941 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:02:58.942  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:02:59.818  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/about', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.about', args=[]}
+2020-05-17 13:02:59.819  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : about
+2020-05-17 13:03:00.115  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:03:00.117 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:00.117 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:03:00.118 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:03:00.119  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:03:12.075  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.index', args=[3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:03:12.078 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:03:12.078 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==> Parameters: 
+2020-05-17 13:03:12.079 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : <==      Total: 1
+2020-05-17 13:03:12.079 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.pageBlog  : ==>  Preparing: select a.* ,b.id,b.name,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true LIMIT ? 
+2020-05-17 13:03:12.080 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.pageBlog  : ==> Parameters: 14(Integer)
+2020-05-17 13:03:12.081 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.BlogMapper.pageBlog  : <==      Total: 6
+2020-05-17 13:03:12.082 DEBUG 8444 --- [http-nio-8081-exec-10] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:03:12.083 DEBUG 8444 --- [http-nio-8081-exec-10] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:03:12.084 DEBUG 8444 --- [http-nio-8081-exec-10] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:03:12.085 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:03:12.085 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 5(Integer)
+2020-05-17 13:03:12.086 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 5
+2020-05-17 13:03:12.086 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:03:12.087 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:03:12.087 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:03:12.088 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:12.088 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 6(Integer)
+2020-05-17 13:03:12.089 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 5
+2020-05-17 13:03:12.089  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : index
+2020-05-17 13:03:12.405  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:03:12.406 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:12.406 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:03:12.407 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:03:12.407  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:03:13.355  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/types/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeShowController.types', args=[-1, 3, 14, {}]}
+2020-05-17 13:03:13.355 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:03:13.356 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:03:13.357 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:03:13.358 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:03:13.358 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 10000(Integer)
+2020-05-17 13:03:13.359 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 7
+2020-05-17 13:03:13.360 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE type_id = ? AND published = true 
+2020-05-17 13:03:13.361 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : ==> Parameters: 5(Long)
+2020-05-17 13:03:13.362 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.m.BlogMapper.blogByTypeId_COUNT    : <==      Total: 1
+2020-05-17 13:03:13.362 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==>  Preparing: select a.* , b.*,c.* from t_blog a join t_type b on a.type_id =b.id join t_user c on a.user_id = c.id where type_id =? and published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:03:13.362 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : ==> Parameters: 5(Long), 14(Integer)
+2020-05-17 13:03:13.363 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.blogByTypeId  : <==      Total: 2
+2020-05-17 13:03:13.364  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : types
+2020-05-17 13:03:13.717  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:03:13.718 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:13.718 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:03:13.719 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:03:13.719  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:03:15.130  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/-1', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[-1, 3, 14, {}, org.apache.catalina.connector.RequestFacade@e3ae0]}
+2020-05-17 13:03:15.132 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:03:15.133 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:03:15.134 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:03:15.136 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:03:15.136 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:03:15.137 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:03:15.137 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:03:15.137 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:03:15.139 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:03:15.140 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? ) 
+2020-05-17 13:03:15.141 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 1(Long)
+2020-05-17 13:03:15.141 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 1
+2020-05-17 13:03:15.141  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:03:15.438  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:03:15.438 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:15.438 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:03:15.439 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:03:15.440  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:03:16.290  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/tags/45', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagShowController.types', args=[45, 3, 14, {}, org.apache.catalina.connector.RequestFacade@796d5a35]}
+2020-05-17 13:03:16.291 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:03:16.291 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:03:16.292 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:03:16.294 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:03:16.294 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.mapper.BlogMapper.allBlog_COUNT    : ==> Parameters: 
+2020-05-17 13:03:16.295 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.b.mapper.BlogMapper.allBlog_COUNT    : <==      Total: 1
+2020-05-17 13:03:16.295 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.BlogMapper.allBlog   : ==>  Preparing: select*from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true order by a.create_time desc LIMIT ? 
+2020-05-17 13:03:16.295 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.BlogMapper.allBlog   : ==> Parameters: 14(Integer)
+2020-05-17 13:03:16.298 DEBUG 8444 --- [http-nio-8081-exec-1] com.ian.blog.mapper.BlogMapper.allBlog   : <==      Total: 6
+2020-05-17 13:03:16.299 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? ) 
+2020-05-17 13:03:16.299 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 46(Long), 45(Long)
+2020-05-17 13:03:16.300 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 2
+2020-05-17 13:03:16.301 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? , ? ) 
+2020-05-17 13:03:16.301 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 42(Long), 45(Long), 41(Long)
+2020-05-17 13:03:16.302 DEBUG 8444 --- [http-nio-8081-exec-1] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 3
+2020-05-17 13:03:16.302  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Result : /tags
+2020-05-17 13:03:16.608  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:03:16.609 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:03:16.609 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:03:16.610 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:03:16.610  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:05:28.118  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/archives', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.ArchivesShowController.archives', args=[{}]}
+2020-05-17 13:05:28.119 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.BlogMapper.dateFormate   : ==>  Preparing: select date_format(create_time,'%Y') as year from t_blog group by year order by year desc 
+2020-05-17 13:05:28.119 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.BlogMapper.dateFormate   : ==> Parameters: 
+2020-05-17 13:05:28.120 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.BlogMapper.dateFormate   : <==      Total: 5
+2020-05-17 13:05:28.121 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:05:28.121 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2020(String)
+2020-05-17 13:05:28.122 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 2
+2020-05-17 13:05:28.122 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:05:28.123 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2019(String)
+2020-05-17 13:05:28.124 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:05:28.124 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:05:28.124 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2018(String)
+2020-05-17 13:05:28.126 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:05:28.126 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:05:28.126 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2017(String)
+2020-05-17 13:05:28.127 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:05:28.128 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:05:28.128 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2016(String)
+2020-05-17 13:05:28.129 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:05:28.129 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.BlogMapper.countBlog   : ==>  Preparing: select count(*) from t_blog where published = true 
+2020-05-17 13:05:28.129 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.BlogMapper.countBlog   : ==> Parameters: 
+2020-05-17 13:05:28.130 DEBUG 8444 --- [http-nio-8081-exec-6] c.ian.blog.mapper.BlogMapper.countBlog   : <==      Total: 1
+2020-05-17 13:05:28.130  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : archives
+2020-05-17 13:05:28.543  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:05:28.545 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:05:28.545 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:05:28.546 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:05:28.546  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:22:03.794  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.LoginController.loginpage', args=[]}
+2020-05-17 13:22:03.803  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : admin/login
+2020-05-17 13:22:07.547  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/login', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.LoginController.login', args=[ian, 1234, org.apache.catalina.session.StandardSessionFacade@2f37264a, {}]}
+2020-05-17 13:22:07.550 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.U.findByUsernameAndPassword      : ==>  Preparing: select * from t_user where username=? and password = ? 
+2020-05-17 13:22:07.550 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.U.findByUsernameAndPassword      : ==> Parameters: ian(String), 81dc9bdb52d04dc20036dbd8313ed055(String)
+2020-05-17 13:22:07.551 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.U.findByUsernameAndPassword      : <==      Total: 1
+2020-05-17 13:22:07.552  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : admin/index
+2020-05-17 13:22:09.079  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/blogs;jsessionid=A64F47178C8D77DCC3258B1EF217D0A6', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.BlogController.list', args=[com.ian.blog.entity.BlogSearch@5d206f47, {blogSearch=com.ian.blog.entity.BlogSearch@5d206f47, org.springframework.validation.BindingResult.blogSearch=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-05-17 13:22:09.082 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type 
+2020-05-17 13:22:09.082 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 
+2020-05-17 13:22:09.083 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 7
+2020-05-17 13:22:09.086 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==>  Preparing: select a.id, a.title ,a.update_time,a.published,a.recommend,a.type_id,b.id,b.name from t_blog a left join t_type b on a.type_id = b.id order by a.create_time asc 
+2020-05-17 13:22:09.086 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==> Parameters: 
+2020-05-17 13:22:09.094 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : <==      Total: 6
+2020-05-17 13:22:09.094  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : /admin/blogs
+2020-05-17 13:22:10.098  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/types', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeController.types', args=[2, 3, {}]}
+2020-05-17 13:22:10.113 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==>  Preparing: SELECT count(0) FROM t_type 
+2020-05-17 13:22:10.113 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==> Parameters: 
+2020-05-17 13:22:10.124 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.mapper.TypeMapper.pageType_COUNT   : <==      Total: 1
+2020-05-17 13:22:10.124 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type LIMIT ?, ? 
+2020-05-17 13:22:10.125 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 3(Integer), 3(Integer)
+2020-05-17 13:22:10.125 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 3
+2020-05-17 13:22:10.130  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : /admin/types
+2020-05-17 13:22:10.873  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/tags', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagController.tags', args=[2, 3, {}]}
+2020-05-17 13:22:10.877 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.pageTag_COUNT  : ==>  Preparing: SELECT count(0) FROM t_tag 
+2020-05-17 13:22:10.878 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.pageTag_COUNT  : ==> Parameters: 
+2020-05-17 13:22:10.879 DEBUG 8444 --- [http-nio-8081-exec-6] c.i.blog.mapper.TagMapper.pageTag_COUNT  : <==      Total: 1
+2020-05-17 13:22:10.880 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag LIMIT ?, ? 
+2020-05-17 13:22:10.880 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 3(Integer), 3(Integer)
+2020-05-17 13:22:10.880 DEBUG 8444 --- [http-nio-8081-exec-6] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 3
+2020-05-17 13:22:10.881  INFO 8444 --- [http-nio-8081-exec-6] com.ian.blog.aspect.LogAsoect            : Result : /admin/tags
+2020-05-17 13:22:13.858  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/tags/input', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TagController.input', args=[{}]}
+2020-05-17 13:22:13.859  INFO 8444 --- [http-nio-8081-exec-1] com.ian.blog.aspect.LogAsoect            : Result : /admin/tags-input
+2020-05-17 13:22:15.642  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/types', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeController.types', args=[2, 3, {}]}
+2020-05-17 13:22:15.644 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==>  Preparing: SELECT count(0) FROM t_type 
+2020-05-17 13:22:15.644 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==> Parameters: 
+2020-05-17 13:22:15.646 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.b.mapper.TypeMapper.pageType_COUNT   : <==      Total: 1
+2020-05-17 13:22:15.647 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type LIMIT ?, ? 
+2020-05-17 13:22:15.647 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 3(Integer), 3(Integer)
+2020-05-17 13:22:15.647 DEBUG 8444 --- [http-nio-8081-exec-2] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 3
+2020-05-17 13:22:15.648  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : /admin/types
+2020-05-17 13:22:16.593  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/blogs', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.BlogController.list', args=[com.ian.blog.entity.BlogSearch@20da4ce6, {blogSearch=com.ian.blog.entity.BlogSearch@20da4ce6, org.springframework.validation.BindingResult.blogSearch=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-05-17 13:22:16.594 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type 
+2020-05-17 13:22:16.594 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 
+2020-05-17 13:22:16.595 DEBUG 8444 --- [http-nio-8081-exec-3] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 7
+2020-05-17 13:22:16.596 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==>  Preparing: select a.id, a.title ,a.update_time,a.published,a.recommend,a.type_id,b.id,b.name from t_blog a left join t_type b on a.type_id = b.id order by a.create_time asc 
+2020-05-17 13:22:16.597 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==> Parameters: 
+2020-05-17 13:22:16.598 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.BlogMapper.simpleQueryBySearch   : <==      Total: 6
+2020-05-17 13:22:16.598  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : /admin/blogs
+2020-05-17 13:23:16.564  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/types', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.TypeController.types', args=[2, 3, {}]}
+2020-05-17 13:23:27.114 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==>  Preparing: SELECT count(0) FROM t_type 
+2020-05-17 13:23:27.114 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.TypeMapper.pageType_COUNT   : ==> Parameters: 
+2020-05-17 13:23:27.118 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.mapper.TypeMapper.pageType_COUNT   : <==      Total: 1
+2020-05-17 13:23:27.119 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type LIMIT ?, ? 
+2020-05-17 13:23:27.119 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 3(Integer), 3(Integer)
+2020-05-17 13:23:27.121 DEBUG 8444 --- [http-nio-8081-exec-9] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 3
+2020-05-17 13:23:27.123  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Result : /admin/types
+2020-05-17 13:30:32.804  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/admin/blogs', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.BlogController.list', args=[com.ian.blog.entity.BlogSearch@2a60f2a7, {blogSearch=com.ian.blog.entity.BlogSearch@2a60f2a7, org.springframework.validation.BindingResult.blogSearch=org.springframework.validation.BeanPropertyBindingResult: 0 errors}]}
+2020-05-17 13:30:32.805 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : ==>  Preparing: select*from t_type 
+2020-05-17 13:30:32.805 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : ==> Parameters: 
+2020-05-17 13:30:32.806 DEBUG 8444 --- [http-nio-8081-exec-10] com.ian.blog.mapper.TypeMapper.pageType  : <==      Total: 7
+2020-05-17 13:30:32.807 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==>  Preparing: select a.id, a.title ,a.update_time,a.published,a.recommend,a.type_id,b.id,b.name from t_blog a left join t_type b on a.type_id = b.id order by a.create_time asc 
+2020-05-17 13:30:32.807 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.simpleQueryBySearch   : ==> Parameters: 
+2020-05-17 13:30:32.809 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.BlogMapper.simpleQueryBySearch   : <==      Total: 6
+2020-05-17 13:30:32.809  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : /admin/blogs
+2020-05-17 13:30:39.587  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.index', args=[3, 14, {}, org.apache.catalina.connector.RequestFacade@e3ae0]}
+2020-05-17 13:30:39.590 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==>  Preparing: SELECT count(0) FROM t_blog a JOIN t_type b ON a.type_id = b.id JOIN t_user c ON a.user_id = c.id WHERE published = true 
+2020-05-17 13:30:39.590 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : ==> Parameters: 
+2020-05-17 13:30:39.592 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.mapper.BlogMapper.pageBlog_COUNT   : <==      Total: 1
+2020-05-17 13:30:39.592 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.pageBlog  : ==>  Preparing: select a.* ,b.id,b.name,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id where published = true LIMIT ? 
+2020-05-17 13:30:39.592 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.pageBlog  : ==> Parameters: 14(Integer)
+2020-05-17 13:30:39.594 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.BlogMapper.pageBlog  : <==      Total: 6
+2020-05-17 13:30:39.594 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==>  Preparing: update t_type c join (select t.name,count(t.id) size from t_blog b join t_type t on b.type_id=t.id where b.published=true group by(t.id)) d on c.name =d.name set c.size = d.size 
+2020-05-17 13:30:39.595 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : ==> Parameters: 
+2020-05-17 13:30:39.596 DEBUG 8444 --- [http-nio-8081-exec-8] c.ian.blog.mapper.TypeMapper.blogALLtag  : <==    Updates: 5
+2020-05-17 13:30:39.596 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : ==>  Preparing: select* from t_type order by size desc limit ? 
+2020-05-17 13:30:39.597 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : ==> Parameters: 5(Integer)
+2020-05-17 13:30:39.598 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.blog.mapper.TypeMapper.listTypeTop   : <==      Total: 5
+2020-05-17 13:30:39.599 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : ==>  Preparing: select*from t_tag 
+2020-05-17 13:30:39.599 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : ==> Parameters: 
+2020-05-17 13:30:39.600 DEBUG 8444 --- [http-nio-8081-exec-8] com.ian.blog.mapper.TagMapper.pageTag    : <==      Total: 7
+2020-05-17 13:30:39.600 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:30:39.600 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 6(Integer)
+2020-05-17 13:30:39.601 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 5
+2020-05-17 13:30:39.601  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : index
+2020-05-17 13:30:39.954  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:30:39.954 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:30:39.954 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:30:39.955 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:30:39.955  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:30:42.109  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/blog/18', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.blog', args=[18, {}]}
+2020-05-17 13:30:42.111 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.BlogMapper.getAllById  : ==>  Preparing: select a.* ,b.* ,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id join t_tag d on a.tagIds = d.id where published = true and a.id =? 
+2020-05-17 13:30:42.111 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.BlogMapper.getAllById  : ==> Parameters: 18(Long)
+2020-05-17 13:30:42.118 DEBUG 8444 --- [http-nio-8081-exec-2] c.ian.blog.mapper.BlogMapper.getAllById  : <==      Total: 1
+2020-05-17 13:30:42.120 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? , ? ) 
+2020-05-17 13:30:42.121 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 46(Long), 45(Long)
+2020-05-17 13:30:42.122 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 2
+2020-05-17 13:30:42.180 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.updateViews   : ==>  Preparing: update t_blog set views =? where id =? 
+2020-05-17 13:30:42.180 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.updateViews   : ==> Parameters: 9(Integer), 18(Long)
+2020-05-17 13:30:42.192 DEBUG 8444 --- [http-nio-8081-exec-2] c.i.blog.mapper.BlogMapper.updateViews   : <==    Updates: 1
+2020-05-17 13:30:42.199  INFO 8444 --- [http-nio-8081-exec-2] com.ian.blog.aspect.LogAsoect            : Result : blog
+2020-05-17 13:30:42.668  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:30:42.669 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:30:42.669 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:30:42.670 DEBUG 8444 --- [http-nio-8081-exec-9] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:30:42.670  INFO 8444 --- [http-nio-8081-exec-9] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:30:42.722  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/comments/18', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.CommentController.comments', args=[18, {}]}
+2020-05-17 13:30:42.725 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.C.listCommentByBlogIdWithPidNull : ==>  Preparing: select * from t_comment where blog_id =? and pid is null order by create_time asc 
+2020-05-17 13:30:42.725 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.C.listCommentByBlogIdWithPidNull : ==> Parameters: 18(Long)
+2020-05-17 13:30:42.746 DEBUG 8444 --- [http-nio-8081-exec-10] c.i.b.m.C.listCommentByBlogIdWithPidNull : <==      Total: 0
+2020-05-17 13:30:42.746  INFO 8444 --- [http-nio-8081-exec-10] com.ian.blog.aspect.LogAsoect            : Result : /blog :: commentList
+2020-05-17 13:30:50.083  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/blog/13', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.blog', args=[13, {}]}
+2020-05-17 13:30:50.084 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.getAllById  : ==>  Preparing: select a.* ,b.* ,c.* from t_blog a join t_type b on a.type_id = b.id join t_user c on a.user_id = c.id join t_tag d on a.tagIds = d.id where published = true and a.id =? 
+2020-05-17 13:30:50.084 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.getAllById  : ==> Parameters: 13(Long)
+2020-05-17 13:30:50.085 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.getAllById  : <==      Total: 1
+2020-05-17 13:30:50.086 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==>  Preparing: select*from t_tag WHERE id in ( ? ) 
+2020-05-17 13:30:50.086 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : ==> Parameters: 1(Long)
+2020-05-17 13:30:50.086 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.TagMapper.getAllTagByid  : <==      Total: 1
+2020-05-17 13:30:50.093 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.updateViews   : ==>  Preparing: update t_blog set views =? where id =? 
+2020-05-17 13:30:50.093 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.updateViews   : ==> Parameters: 10(Integer), 13(Long)
+2020-05-17 13:30:50.101 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.updateViews   : <==    Updates: 1
+2020-05-17 13:30:50.105  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : blog
+2020-05-17 13:30:50.513  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:30:50.514 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:30:50.514 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:30:50.516 DEBUG 8444 --- [http-nio-8081-exec-8] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:30:50.516  INFO 8444 --- [http-nio-8081-exec-8] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:30:50.554  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/comments/13', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.CommentController.comments', args=[13, {}]}
+2020-05-17 13:30:50.554 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.C.listCommentByBlogIdWithPidNull : ==>  Preparing: select * from t_comment where blog_id =? and pid is null order by create_time asc 
+2020-05-17 13:30:50.554 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.C.listCommentByBlogIdWithPidNull : ==> Parameters: 13(Long)
+2020-05-17 13:30:50.564 DEBUG 8444 --- [http-nio-8081-exec-3] c.i.b.m.C.listCommentByBlogIdWithPidNull : <==      Total: 4
+2020-05-17 13:30:50.568 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.568 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 55(Long)
+2020-05-17 13:30:50.569 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.570 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.570 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 56(Long)
+2020-05-17 13:30:50.571 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.571 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.571 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 56(Long)
+2020-05-17 13:30:50.573 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.573 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.574 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 57(Long)
+2020-05-17 13:30:50.575 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.575 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.575 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 57(Long)
+2020-05-17 13:30:50.577 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.578 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.578 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 58(Long)
+2020-05-17 13:30:50.579 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.580 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.580 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 58(Long)
+2020-05-17 13:30:50.581 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.581 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.581 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 59(Long)
+2020-05-17 13:30:50.582 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.583 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.583 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 59(Long)
+2020-05-17 13:30:50.584 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.584 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.584 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 61(Long)
+2020-05-17 13:30:50.585 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.585 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.586 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 61(Long)
+2020-05-17 13:30:50.586 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 1
+2020-05-17 13:30:50.587 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.587 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 62(Long)
+2020-05-17 13:30:50.588 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 0
+2020-05-17 13:30:50.588 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.588 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 63(Long)
+2020-05-17 13:30:50.589 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 0
+2020-05-17 13:30:50.589 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.589 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 64(Long)
+2020-05-17 13:30:50.590 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 0
+2020-05-17 13:30:50.590 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==>  Preparing: select* from t_comment where pid is not null and pid=? 
+2020-05-17 13:30:50.590 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : ==> Parameters: 69(Long)
+2020-05-17 13:30:50.591 DEBUG 8444 --- [http-nio-8081-exec-3] .b.m.C.listCommentByBlogIdWithPidNotNull : <==      Total: 0
+2020-05-17 13:30:50.591  INFO 8444 --- [http-nio-8081-exec-3] com.ian.blog.aspect.LogAsoect            : Result : /blog :: commentList
+2020-05-17 13:41:45.604  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/archives', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.ArchivesShowController.archives', args=[{}]}
+2020-05-17 13:41:45.607 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : ==>  Preparing: select date_format(create_time,'%Y') as year from t_blog group by year order by year desc 
+2020-05-17 13:41:45.607 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : ==> Parameters: 
+2020-05-17 13:41:45.608 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.blog.mapper.BlogMapper.dateFormate   : <==      Total: 5
+2020-05-17 13:41:45.609 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:41:45.609 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2020(String)
+2020-05-17 13:41:45.610 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 2
+2020-05-17 13:41:45.611 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:41:45.611 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2019(String)
+2020-05-17 13:41:45.612 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:41:45.612 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:41:45.612 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2018(String)
+2020-05-17 13:41:45.613 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:41:45.613 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:41:45.621 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2017(String)
+2020-05-17 13:41:45.622 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:41:45.622 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==>  Preparing: select*from t_blog where date_format(create_time,'%Y') =? 
+2020-05-17 13:41:45.623 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : ==> Parameters: 2016(String)
+2020-05-17 13:41:45.623 DEBUG 8444 --- [http-nio-8081-exec-5] c.i.b.mapper.BlogMapper.getblogByYear    : <==      Total: 1
+2020-05-17 13:41:45.624 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : ==>  Preparing: select count(*) from t_blog where published = true 
+2020-05-17 13:41:45.624 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : ==> Parameters: 
+2020-05-17 13:41:45.625 DEBUG 8444 --- [http-nio-8081-exec-5] c.ian.blog.mapper.BlogMapper.countBlog   : <==      Total: 1
+2020-05-17 13:41:45.625  INFO 8444 --- [http-nio-8081-exec-5] com.ian.blog.aspect.LogAsoect            : Result : archives
+2020-05-17 13:41:46.014  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Request : url='http://localhost:8081/footer/newblog', ip='0:0:0:0:0:0:0:1', classMethod='com.ian.blog.controller.IndexController.footerNewBlog', args=[{}]}
+2020-05-17 13:41:46.014 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==>  Preparing: select title,id from t_blog where recommend =true order by create_time desc limit ? 
+2020-05-17 13:41:46.014 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : ==> Parameters: 3(Integer)
+2020-05-17 13:41:46.015 DEBUG 8444 --- [http-nio-8081-exec-7] c.i.b.m.BlogMapper.listRecommendBlog     : <==      Total: 3
+2020-05-17 13:41:46.015  INFO 8444 --- [http-nio-8081-exec-7] com.ian.blog.aspect.LogAsoect            : Result : _fragments :: newbloglist
+2020-05-17 13:42:28.372  INFO 8444 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-17 13:42:28.373  INFO 8444 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-17 13:42:28.381  INFO 8444 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

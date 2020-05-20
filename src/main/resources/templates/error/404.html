@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+<nav th:replace="_fragments :: menu(1)"></nav>
+
+<div class="m-container-smail m-padded-tb-massive">
+    <div class="ui error message">
+        <div class="ui container">
+            <h2>404</h2>
+            <p>對不起你訪問的地址不存在</p>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footer"></footer>
+
+<th:block th:replace="_fragments :: script"/>
+<script>
+    $('.menu.toggle').click(function() {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>
