@@ -21,14 +21,14 @@ public class ControllerExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     //標註這個方法可以做異常處裡
     @ExceptionHandler(Exception.class)
-    public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
+    public ModelAndView exceptionHandler(HttpServletRequest request, Exception e,ModelAndView mv) throws Exception {
         logger.error("Request URL : {}, Exception : {}", request.getRequestURL(),e); //也可以用getMessage();
 
         if(AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) !=null){
             throw e;
         }
 
-        ModelAndView mv = new ModelAndView();
+
         mv.addObject("url", request.getRequestURL());
         mv.addObject("Exception: ",e);
         mv.setViewName("error/error");
