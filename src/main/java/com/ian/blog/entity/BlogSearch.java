@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
  */
     @Component
     public class BlogSearch {
-    private String title;//标题
-    private Long typeId;//分类
-    private Boolean recommend;//是否推荐
+    private String title;//標題
+    private Long typeId;//分類
+    private Boolean recommend;//是否推薦
 
     public BlogSearch() {
     }

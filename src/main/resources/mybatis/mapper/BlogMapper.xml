@@ -104,7 +104,7 @@
 
     <!--最新推薦-->
     <select id="listRecommendBlog" parameterType="int" resultType="blog">
-        select title,id from t_blog where recommend =true order by create_time desc
+        select title,id from t_blog where recommend = true order by create_time desc
         <if test="num != -1">
             limit #{num}
         </if>
